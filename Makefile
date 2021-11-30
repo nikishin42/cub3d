@@ -27,7 +27,7 @@ all: $(NAME)
 
 # $(NAME): lib mlx
 # 	gcc -o $(NAME) $(SRC) $(LIB) $(MLX) $(FRAMEWORKS)
-$(NAME):
+$(NAME): $(SRC) 
 	@ gcc -o $(NAME) $(SRC) $(LIB) $(MLX) $(FRAMEWORKS)
 	@ echo $(NAME) compilation is OK!
 	@ ./$(NAME)
