@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "libft/libft.h"
+#include "minilibx_opengl/mlx.h"
 
 typedef struct s_elements
 {

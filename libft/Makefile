@@ -21,18 +21,21 @@ NAME = libft.a
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	@ ar rcs $(NAME) $(OBJS)
+	@ echo libft compilation is OK!
 
 bonus: $(BONUSOBJS)
-	ar rcs $(NAME) $(BONUSOBJS)
+	@ ar rcs $(NAME) $(BONUSOBJS)
 
 %.o: %.c %libft.h
-	gcc -Wall -Wextra -Werror -c $< -o $@
+	@ gcc -Wall -Wextra -Werror -c $< -o $@
 
 clean:
-	rm -rf *.o
+	@ rm -rf *.o
+	@ echo "libft clean is OK!"
 
 fclean:
 	rm -rf *.o $(NAME) $(BONUSNAME)
+	@ echo "libft fclean is OK!"
 
 re: fclean all
