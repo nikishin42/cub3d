@@ -1,11 +1,14 @@
-#ifndef PARSE_H
-#define PARSE_H
+#ifndef MAIN_H
+#define MAIN_H
 
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
+# include <math.h>
 
 #include "libft/libft.h"
 #include "minilibx_opengl/mlx.h"
+#include "graphic/graphic.h"
 
 typedef struct s_elements
 {

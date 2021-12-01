@@ -1,4 +1,4 @@
-#include "parse.h"
+#include "main.h"
 
 void init_null_walls(t_elements *elem)
 {

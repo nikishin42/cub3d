@@ -1,4 +1,4 @@
-#include "parse.h"
+#include "main.h"
 
 int msg_wrong_argc(void)
 {
