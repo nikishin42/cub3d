@@ -1,26 +1,39 @@
-#include "parse.h"
+#include "../parse.h"
 
-void read_map(int fd, t_elements *elem)
+int check_fd(int *fd, char *file_name)
+{
+	char buf;
+	int len;
+	char *ext;
+
+	*fd = open(file_name, O_RDONLY);
+	if (*fd < 0 || read(*fd, &buf, 0) < 0)
+		msg_error(file_name);
+	len = ft_strlen(file_name);
+	ext = ".cub";
+	if (ft_strncmp(ext, file_name + len - 4, 5) != 0)
+		msg_err("Map has invalid extension\n");
+	return (0);
+}
+
+char *read_map(int fd, t_elements *elem, char **map)
 {
 	char *line;
 	int num;
 	int gnl;
 	int empty_line;
-	char *map;
 
 	empty_line = 0;
 	num = 0;
 	gnl = 1;
-	map = NULL;
+	line = NULL;
 	while (gnl)
 	{
 		gnl = get_next_line(fd, &line);
-		// printf("%s len: %d num = %d\n", line, ft_strlen(line), num);
 		if (!sym_found(line, "01WENS ") || !ft_strlen(line) || sym_found(line, " ")) //check tab
 		{
-			if (record_elem(line, elem, &num))
-				msg_invalid_line(line);
-			if (map != NULL)
+			record_elem(line, elem, &num);
+			if (*map != NULL)
 				empty_line += 1;
 		}
 		else if (sym_found(line, "01WENS "))
@@ -28,39 +41,33 @@ void read_map(int fd, t_elements *elem)
 			if (num < 6)
 				msg_map_last();
 			if (empty_line)
-				msg_map_wrong();
-			record_map(line, &map);
+				msg_err("Empty lines in map content\n");
+			record_map(line, map);
 		}
 		free(line);
-		line = NULL;
-		if (gnl == 0)
-			break;
 	}
-	printf("%s\n", map);
+	return (*map);
 }
 
 t_elements *parse(int argc, char **argv)
 {
 	t_elements *elem;
+	char       *map;
 	int fd;
-	int read_res;
-	char buf;
 
 	if (argc != 2)
-		msg_wrong_argc();
+		msg_err("wrong number of arguments\n");
+	check_fd(&fd, argv[1]);
 	elem = malloc(sizeof(t_elements));
-	fd = open(argv[1], O_RDONLY);
-	if (fd < 0 || read(fd, &buf, 0) < 0) // check later
-		msg_error(argv[1]);
-	// printf("fd = %d\n", fd);
 	init_empty_elem(elem);
-	elem->direct = '0';
-	read_map(fd, elem);
-	close(fd);
+	map = NULL;
+	map = read_map(fd, elem, &map);
+	if (map == NULL)
+		msg_err("Map not found\n");
+	// printf("%s\n", map);
+	validate_map(elem, map);
 
-	printf("%d\n", elem->direct);
-	printf("elem walls = %s %s %s %s\n", elem->NO, elem->SO, elem->WE, elem->EA);
-	printf("F[2] = %d!\n", elem->F[1]);
-	printf("F[2] = %d!\n", elem->C[1]);
-	return elem;
+	free(map);
+	close(fd);
+	return (elem);
 }

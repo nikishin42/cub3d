@@ -1,4 +1,4 @@
-#include "parse.h"
+#include "../parse.h"
 
 void init_empty_elem(t_elements *elem)
 {
@@ -12,6 +12,10 @@ void init_empty_elem(t_elements *elem)
 	elem->C[0] = -1;
 	elem->C[1] = -1;
 	elem->C[2] = -1;
+	elem->width = 0;
+	elem->height =0;
+	elem->direct = '0';
+
 }
 
 void check_texture(char **elem_line, char **elem_name)
@@ -21,9 +25,9 @@ void check_texture(char **elem_line, char **elem_name)
 	int read_res;
 
 	if (*elem_name != NULL)
-		msg_elem_dublicates(elem_line[0]);
+		msg_err2(elem_line[0], ": dublicates found\n");
 	if (array2_len(elem_line) != 2)
-		msg_wrong_elem_args(elem_line[0]);
+		msg_err2(elem_line[0], ": wrong number of args\n");
 	fd = open(elem_line[1], O_RDONLY);
 	if (fd < 0 || read(fd, &buf, 0) < 0)
 	{
@@ -43,21 +47,21 @@ int check_colors(char **elem_line, int *elem_values, char *elem_name)
 
 	i = 0;
 	if (array2_len(elem_line) != 2)
-		msg_wrong_elem_args(elem_name);
+		msg_err2(elem_name, ": wrong number of args\n");
 	if (elem_values[0] != -1)
-		msg_elem_dublicates(elem_name);
+		msg_err2(elem_name, ": dublicates found\n");
 	colors = ft_split(elem_line[1], ',');
 	if (colors == NULL)
 		msg_malloc_fail();
 	if (array2_len(colors) != 3)
-		msg_wrong_rgb(elem_name);
+		msg_err2(elem_name, ": invalid rgb\n");
 	while (i < 3)
 	{
 		if (!is_digitstr(colors[i]))
-			msg_wrong_rgb(elem_name);
+			msg_err2(elem_name, ": invalid rgb\n");
 		elem_values[i] = ft_atoi(colors[i]);
 		if (elem_values[i] < 0 || elem_values[i] > 255)
-			msg_wrong_rgb(elem_name);
+			msg_err2(elem_name, ": invalid rgb\n");
 		i++;
 	}
 	array2_free(colors);
@@ -68,7 +72,7 @@ int record_elem(char *line, t_elements *elem, int *num)
 {
 	char **split_elem;
 
-	if (ft_strlen(line) == 0 || sym_found(line, " "))
+	if (ft_strlen(line) == 0 || sym_found(line, " \0"))
 		return (0);
 	split_elem = ft_split(line, ' ');
 	if (split_elem == NULL)
@@ -86,10 +90,7 @@ int record_elem(char *line, t_elements *elem, int *num)
 	else if (ft_strncmp(split_elem[0], "C", 2) == 0)
 		check_colors(split_elem, elem->C, "C");
 	else
-	{
-		array2_free(split_elem);
-		return (1);
-	}
+		msg_err2(line, ": invalid line\n");
 	array2_free(split_elem);
 	(*num)++;
 	return (0);
