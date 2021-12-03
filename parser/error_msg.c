@@ -1,10 +1,4 @@
-#include "parse.h"
-
-int msg_wrong_argc(void)
-{
-	printf("wrong number of arguments\n");
-	exit(1);
-}
+#include "../parse.h"
 
 int msg_error(char *name)
 {
@@ -15,48 +9,28 @@ int msg_error(char *name)
 	exit(1);
 }
 
-int msg_wrong_elem_args(char *str)
-{
-	ft_putstr_fd(str, 2);
-	ft_putstr_fd(": wrong number of args for element\n", 2);
-	exit(1);
-}
-
-int msg_elem_dublicates(char *str)
-{
-	ft_putstr_fd(str, 2);
-	ft_putstr_fd(": dublicates found\n", 2);
-	exit(1);
-}
-
 int msg_malloc_fail(void)
 {
 	ft_putstr_fd("malloc fail\n", 2);
 	exit(1);
 }
 
-int msg_wrong_rgb(char *name)
+int msg_err2(char *name, char *text)
 {
 	ft_putstr_fd(name, 2);
-	ft_putstr_fd(": invalid rgb\n", 2);
-	exit(1);
-}
-
-int msg_invalid_line(char *name)
-{
-	ft_putstr_fd(name, 2);
-	ft_putstr_fd(": invalid line\n", 2);
+	ft_putstr_fd(text, 2);
 	exit(1);
 }
 
 int msg_map_last(void)
 {
-	ft_putstr_fd("error: map must be followed after NO, SO, WE, EA, F, C elements declared\n", 2);
+	ft_putstr_fd("Map must be followed after NO, \
+	SO, WE, EA, F, C elements\n", 2);
 	exit(1);
 }
 
-int msg_map_wrong(void)
+int msg_err(char *str)
 {
-	ft_putstr_fd("map should not be split by empty line\n", 2);
+	ft_putstr_fd(str, 2);
 	exit(1);
 }
