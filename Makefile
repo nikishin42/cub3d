@@ -1,6 +1,6 @@
 # SRC = graphic/*.c parser/*.c main.c 
 
-SRC = main.c
+SRC = *.c
 
 NAME = cub3d
 
@@ -27,16 +27,16 @@ all: $(NAME)
 
 # $(NAME): lib mlx
 # 	gcc -o $(NAME) $(SRC) $(LIB) $(MLX) $(FRAMEWORKS)
-# $(NAME): $(SRC)
-# 	@ gcc -o $(NAME) $(SRC) $(LIB) $(MLX) $(FRAMEWORKS)
-# 	@ echo $(NAME) compilation is OK!
-# 	@ ./$(NAME)
-
-# gcc для Асем
 $(NAME): $(SRC)
-	@ gcc -o $(NAME) $(SRC) $(LIB)
+	@ gcc -o $(NAME) $(SRC) $(LIB) $(MLX) $(FRAMEWORKS)
 	@ echo $(NAME) compilation is OK!
 	@ ./$(NAME)
+
+# gcc для Асем
+# $(NAME): $(SRC)
+# 	@ gcc -o $(NAME) $(SRC) $(LIB)
+# 	@ echo $(NAME) compilation is OK!
+# 	@ ./$(NAME)
 lib:
 	@ make -C libft/
 
