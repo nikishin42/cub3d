@@ -1,70 +1,81 @@
 #include "parse.h"
 
-typedef struct	s_vars {
-	void	*mlx;
-	void	*win;
-}				t_vars;
-
-
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	init_map(t_cube *cube)
 {
-	char	*dst;
+	char **map;
+	int x = 0;
+	int y = 0;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	map = malloc(sizeof(char *) * 6);
+	while (x < 5)
+		map[x++] = malloc(sizeof(char) * 6);
+	x = 0;
+	while (y < 5)
+	{
+		x = 0;
+		while (x < 5)
+		{
+			if (x == 0 || x == 4 || y == 0 || y == 4)
+				map[y][x] = '1';
+			else
+				map[y][x] = '0';
+			// if 	
+			x++;
+		}
+		map[y][x] = 0;
+		y++;
+	}
+	// map[2][3] = 'N';
+	// map[y] = NULL;
+	y = 0;
+	// while (map[y])
+	// 	printf("%s\n", map[y++]);
+
+	cube->src->map = map;
 }
 
-int	key_hook(int keycode, t_vars *vars)
+void	init_cube(t_cube *cube)
 {
-	if (keycode == 53)
-		exit(0);
-	printf("%d\n", keycode);
-	return (0);
+	t_elements	*src;
+	t_player	*hero;
+	t_coords	*coords;
+	t_texture	*texs;
+	t_keys		*keys;
+	t_img		*img;
+
+	src = malloc(sizeof(t_elements));
+	hero = malloc(sizeof(t_player));
+	coords = malloc(sizeof(t_coords));
+	texs = malloc(sizeof(t_texture) * 4);
+	keys = malloc(sizeof(t_keys));
+	img = malloc(sizeof(t_img));
+	cube->mlx = mlx_init();
+	cube->win = mlx_new_window(cube->mlx, WIDTH, HEIGHT, "cube3d");
+	cube->src = src;
+	cube->hero = hero;
+	cube->coords = coords;
+	cube->texs = texs;
+	cube->key = keys;
+	cube->img = img;
+	// img->img = mlx_new_image(cube->mlx, WIDTH, HEIGHT);
+	// img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_length, &img->endian);
+	init_map(cube);
+	cube->hero->direction = 'E';
+	cube->hero->x = 2;
+	cube->hero->y = 2;
+	cube->key->w = 0;
+	cube->key->a = 0;
+	cube->key->s = 0;
+	cube->key->d = 0;
+	cube->key->left = 0;
+	cube->key->right = 0;
+	cube->key->esc = 0;
 }
 
-// int main(int argc, char **argv)
-// {
-// 	void		*mlx;
-// 	void		*mlx_win;
-// 	t_data		img;
-// 	t_elements	*elements;
-
-// 	// elements = parse(argc, argv);
-// 	mlx = mlx_init();
-// 	img.img = mlx_new_image(mlx, 1920, 1080);
-// 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-// 	// mlx_win = mlx_new_window(mlx, 1920, 1080, "cube3d");
-// 	// mlx_loop(mlx); 
-// 	return (0);
-// }
-
-int	closer(int keycode, t_vars *vars)
+int main(void)
 {
-	mlx_destroy_window(vars->mlx, vars->win);
-	exit(0);
-}
+	t_cube cube;
 
-int	main(void)
-{
-	t_vars	vars;
-	t_data	img;
-
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "cub3d");
-	img.img = mlx_new_image(vars.mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	my_mlx_pixel_put(&img, 555, 885, 0x00FF0000);
-	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
-	mlx_key_hook(vars.win, key_hook, &vars);
-	mlx_hook(vars.win, 2, 1L<<0, closer, &vars);
-	mlx_loop(vars.mlx);
-	return (0);
+	init_cube(&cube);
+	graphic(&cube);
 }
