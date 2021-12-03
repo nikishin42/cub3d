@@ -12,7 +12,8 @@
 
 #define HEIGHT 480
 #define WIDTH 640
-
+#define MS 0.05 // move speed
+#define RS 0.06 // 	rotation speed
 typedef struct s_keys
 {
 	int	w;
@@ -148,5 +149,6 @@ void	draw(t_cube *cube);
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	draw_walls(t_cube *cube);
 void	move(t_cube *cube);
+int	draw_all(t_cube *cube);
 
 #endif

@@ -5,13 +5,13 @@ void	ray_init(t_cube *cube, int x, t_ray *ray)
 	ray->camerax = 2 * x / (double)WIDTH - 1;
 	// printf("camx = %f\n", ray->camerax);
 	ray->raydirx = cube->coords->dirx + cube->coords->planex * ray->camerax;
-	// printf("%f\n", ray->raydirx);
+	// // printf("%f\n", ray->raydirx);
 	// exit(0);
 	ray->raydiry = cube->coords->diry + cube->coords->planey * ray->camerax;
 	// printf("rdx = %f, rdy = %f\n", ray->raydirx, ray->raydiry);
 	ray->mapx = (int)(cube->coords->posx);
 	ray->mapy = (int)(cube->coords->posx);
-	printf("mx = %d, my = %d\n", ray->mapx, ray->mapy);
+	// printf("mx = %d, my = %d\n", ray->mapx, ray->mapy);
 	ray->deltadistx = fabs(1 / ray->raydirx);
 	ray->deltadisty = fabs(1 / ray->raydiry);
 	// printf("mx = %d, my = %d\n", ray->mapx, ray->mapy);
@@ -26,7 +26,7 @@ void	step_sidedist_init(t_cube *cube, t_ray *ray)
 	}
 	else
 	{
-		ray->sidedistx = (ray->mapx - cube->coords->dirx + 1.0) * ray->deltadistx;
+		ray->sidedistx = (ray->mapx - cube->coords->posx + 1.0) * ray->deltadistx;
 		ray->stepx = 1;
 	}
 	if (ray->raydiry < 0)

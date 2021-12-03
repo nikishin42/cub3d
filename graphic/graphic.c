@@ -39,11 +39,11 @@ void	draw_terra_sky(t_cube *cube)
 		while (x < WIDTH)
 		{
 			if (y < (HEIGHT / 2))
-				// color = 0x00b5b9ff;
-				color = 0x00b5b9ff + (y * x);
+				color = 0x00b5b9ff;
+				// color = 0x00b5b9ff + (y * x);
 			else
-				color = 0x00ffffd1 - (y * y % 128);
-				// color = 0x00ffffd1;
+				// color = 0x00ffffd1 - (y * y % 128);
+				color = 0x00ffffd1;
 			my_mlx_pixel_put(cube->img, x, y, color);
 			x++;
 		}
@@ -75,6 +75,7 @@ int key_press(int key, t_cube *cube)
 	// printf("%d\n", key);
 	if (key == 13)
 		cube->key->w = 1;
+		// up_down(cube, 0.05);
 	if (key == 1)
 		cube->key->s = 1;
 	if (key == 0)
@@ -118,6 +119,7 @@ void	graphic(t_cube *cube)
 	set_direction(cube);
 	// printf("dx = %f, dy = %f\n", cube->coords->dirx, cube->coords->diry);
 	// cube->src->map[cube->hero->y][cube->hero->x] = '0';
+	// draw_all(cube);
 	mlx_hook(cube->win, 17, 0, closer, cube);
 	mlx_hook(cube->win, 2, 0, key_press, cube);
 	mlx_hook(cube->win, 3, 0, key_release, cube);

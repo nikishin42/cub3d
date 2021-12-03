@@ -26,10 +26,10 @@ void	init_map(t_cube *cube)
 		y++;
 	}
 	// map[2][3] = 'N';
-	// map[y] = NULL;
+	map[y] = NULL;
 	y = 0;
-	// while (map[y])
-	// 	printf("%s\n", map[y++]);
+	while (map[y])
+		printf("%s\n", map[y++]);
 
 	cube->src->map = map;
 }
