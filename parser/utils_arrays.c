@@ -1,4 +1,4 @@
-#include "parse.h"
+#include "../parse.h"
 
 int is_digitstr(char *str)
 {
@@ -11,6 +11,7 @@ int is_digitstr(char *str)
 
 int sym_found(char *str, char *search)
 {
+	// printf("here 14\n");
 	// printf("%s - str, %s - serch\n", str, search);
 	while (*str)
 	{
