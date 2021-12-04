@@ -1,4 +1,4 @@
-#include "../parse.h"
+#include "../../include/parse.h"
 
 int check_recurs(char **map, int i, int j, t_elements *elem)
 {

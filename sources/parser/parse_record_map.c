@@ -1,4 +1,4 @@
-#include "../parse.h"
+#include "../../include/parse.h"
 
 int record_map(char *line, char **map)
 {

@@ -1,4 +1,4 @@
-#include "../parse.h"
+#include "../../include/parse.h"
 
 char	*ft_strdupc(char *s1, char c)
 {

@@ -1,5 +1,6 @@
 // #include "graphic.h"
-#include "parse.h"
+#include "../../include/parse.h"
+
 
 void	set_plane(t_cube *cube)
 {

@@ -1,4 +1,4 @@
-#include "parse.h"
+#include "../../include/parse.h"
 
 void	ray_init(t_cube *cube, int x, t_ray *ray)
 {
