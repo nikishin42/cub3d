@@ -5,16 +5,16 @@ void	ray_init(t_cube *cube, int x, t_ray *ray)
 	ray->camerax = 2 * x / (double)WIDTH - 1;
 	// printf("camx = %f\n", ray->camerax);
 	ray->raydirx = cube->coords->dirx + cube->coords->planex * ray->camerax;
-	// // printf("%f\n", ray->raydirx);
-	// exit(0);
+	// printf("%f\n", ray->raydirx);
 	ray->raydiry = cube->coords->diry + cube->coords->planey * ray->camerax;
 	// printf("rdx = %f, rdy = %f\n", ray->raydirx, ray->raydiry);
 	ray->mapx = (int)(cube->coords->posx);
-	ray->mapy = (int)(cube->coords->posx);
+	ray->mapy = (int)(cube->coords->posy);
 	// printf("mx = %d, my = %d\n", ray->mapx, ray->mapy);
 	ray->deltadistx = fabs(1 / ray->raydirx);
 	ray->deltadisty = fabs(1 / ray->raydiry);
 	// printf("mx = %d, my = %d\n", ray->mapx, ray->mapy);
+	// exit(0);
 }
 
 void	step_sidedist_init(t_cube *cube, t_ray *ray)
@@ -58,8 +58,10 @@ void	dda(t_cube *cube, t_ray *ray)
 			ray->mapy += ray->stepy;
 			ray->side = 1;
 		}
+		// printf("my = %d mx = %d\n", ray->mapy, ray->mapx);
 		if (cube->src->map[ray->mapy][ray->mapx] != '0')
 			ray->hit = 1;
+
 	}
 	if (ray->side == 0)
 		ray->perpwalldist = (ray->sidedistx - ray->deltadistx);

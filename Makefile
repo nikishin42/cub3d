@@ -1,6 +1,6 @@
 # SRC = graphic/*.c parser/*.c main.c 
 
-SRC = sources/graphic/*.c sources/main.c
+SRC = sources/graphic/*.c sources/main.c sources/parser/*.c
 
 NAME = cub3d
 

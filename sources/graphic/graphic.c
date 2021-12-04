@@ -4,20 +4,50 @@
 
 void	set_plane(t_cube *cube)
 {
-	// if (cube->hero->direction == 'E')
-	// {
+	if (cube->hero->direction == 'E')
+	{
 		cube->coords->planex = 0;
 		cube->coords->planey = -0.66;
-	// }
+	}
+	if (cube->hero->direction == 'W')
+	{
+		cube->coords->planex = 0;
+		cube->coords->planey = 0.66;
+	}
+	if (cube->hero->direction == 'S')
+	{
+		cube->coords->planex = -0.66;
+		cube->coords->planey = 0;
+	}
+	if (cube->hero->direction == 'N')
+	{
+		cube->coords->planex = 0.66;
+		cube->coords->planey = 0;
+	}
 }
 
 void	set_direction(t_cube *cube)
 {
-	// if (cube->hero->direction == 'E')
-	// {
+	if (cube->hero->direction == 'E')
+	{
 		cube->coords->dirx = 1;
 		cube->coords->diry = 0;
-	// }
+	}
+	if (cube->hero->direction == 'W')
+	{
+		cube->coords->dirx = -1;
+		cube->coords->diry = 0;
+	}
+	if (cube->hero->direction == 'S')
+	{
+		cube->coords->dirx = 0;
+		cube->coords->diry = -1;
+	}
+	if (cube->hero->direction == 'N')
+	{
+		cube->coords->dirx = 0;
+		cube->coords->diry = 1;
+	}
 }
 
 void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
@@ -40,11 +70,11 @@ void	draw_terra_sky(t_cube *cube)
 		while (x < WIDTH)
 		{
 			if (y < (HEIGHT / 2))
-				color = 0x00b5b9ff;
+				color = color_hex(cube->src->C[0], cube->src->C[1], cube->src->C[2]);
 				// color = 0x00b5b9ff + (y * x);
 			else
+				color = color_hex(cube->src->F[0], cube->src->F[1], cube->src->F[2]);
 				// color = 0x00ffffd1 - (y * y % 128);
-				color = 0x00ffffd1;
 			my_mlx_pixel_put(cube->img, x, y, color);
 			x++;
 		}

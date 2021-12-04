@@ -128,18 +128,19 @@ t_elements *parse(int argc, char **argv);
 void init_empty_elem(t_elements *elem);
 void check_texture(char **elem_line, char **elem_name);
 int check_colors(char **elem_line, int *elem_values, char *elem_name);
+char *read_map(int fd, t_elements *elem, char **map);
 int record_elem(char *line, t_elements *elem, int *num);
-int record_map(char *line, char **map);
 int validate_map(t_elements *elem, char *line);
 int check_start_point(char **map, t_elements *elem);
 void check_walls(char **map_arr, t_elements *elem);
 
 
-int msg_error(char *name);
+int msg_stderror(char *name);
 int msg_malloc_fail(void);
 int msg_err2(char *name, char *text);
 int msg_map_last(void);
 int msg_err(char *str);
+int msg_walls_err(int i, int j);
 
 int array2_len(char **array2);
 void array2_free(char **array2);

@@ -1,9 +1,14 @@
 #include "../../include/parse.h"
 
-int record_map(char *line, char **map)
+
+int record_map(int num, int empty_line, char *line, char **map)
 {
 	char *old_map;
 
+	if (num < 6)
+		msg_map_last();
+	if (empty_line)
+		msg_err("Empty lines in map content\n");
 	if (*map == NULL)
 	{
 		*map = ft_strdup(line);
@@ -21,47 +26,30 @@ int record_map(char *line, char **map)
 }
 
 
-
-int check_start_point(char **map, t_elements *elem)
+char *read_map(int fd, t_elements *elem, char **map)
 {
-	int i;
-	int j;
+	char *line;
+	int num;
+	int gnl;
+	int empty_line;
 
-	i = -1;
-	while (map[++i])
+	empty_line = 0;
+	num = 0;
+	gnl = 1;
+	line = NULL;
+	while (gnl)
 	{
-		j = -1;
-		while (map[i][++j])
+		gnl = get_next_line(fd, &line);
+		if (!sym_found(line, "01WENS ") || !ft_strlen(line) || \
+		sym_found(line, " ")) //check tab
 		{
-			if (ft_strchr("NSEW", map[i][j]))
-			{
-				if (elem->dir != '0')
-					msg_err("More than 1 start point found\n");
-				elem->dir = map[i][j];
-				elem->vec.x = i;
-				elem->vec.y = j;
-			}
-		}		
+			record_elem(line, elem, &num);
+			if (*map != NULL)
+				empty_line += 1;
+		}
+		else if (sym_found(line, "01WENS "))			
+			record_map(num, empty_line, line, map);
+		free(line);
 	}
+	return (*map);
 }
-/*
-int validate_map(t_elements *elem, char *map)
-{
-	char **map_arr;
-
-	define_map_size(map, elem);
-	map_arr = create_array2(elem);
-	fill_map(map, map_arr, elem->width, elem->height);
-	elem->map = map_arr;
-	check_start_point(map_arr, elem);
-	check_for_walls(map_arr, elem);
-
-	// int i = 0;
-	// while (map_arr[i])
-	// {
-	// 	printf("%s\n", map_arr[i]);
-	// 	i++;
-	// }
-	// printf("\n");
-	return (0);
-}*/

@@ -1,22 +1,5 @@
 #include "../../include/parse.h"
 
-void init_empty_elem(t_elements *elem)
-{
-	elem->NO = NULL;
-	elem->SO = NULL;
-	elem->WE = NULL;
-	elem->EA = NULL;
-	elem->F[0] = -1;
-	elem->F[1] = -1;
-	elem->F[2] = -1;
-	elem->C[0] = -1;
-	elem->C[1] = -1;
-	elem->C[2] = -1;
-	elem->width = 0;
-	elem->height =0;
-	elem->dir = '0';
-}
-
 void check_texture(char **elem_line, char **elem_name)
 {
 	int fd;
@@ -29,11 +12,7 @@ void check_texture(char **elem_line, char **elem_name)
 		msg_err2(elem_line[0], ": wrong number of args\n");
 	fd = open(elem_line[1], O_RDONLY);
 	if (fd < 0 || read(fd, &buf, 0) < 0)
-	{
-		write(2, elem_line[0], ft_strlen(elem_line[0]));
-		write(2, ": ", 2);
-		msg_error(elem_line[1]);
-	}
+		msg_stderror(elem_line[1]);
 	close(fd);
 	*elem_name = ft_strdup(elem_line[1]);
 }

@@ -77,11 +77,12 @@ void	init_cube_2(t_cube *cube, t_elements *elem)
 {
 	cube->src = elem;
 	int y = 0;
-	while (cube->src->map[y])
-		printf("%s\n", cube->src->map[y++]);
 	cube->hero->direction = cube->src->dir;
 	cube->hero->x = cube->src->vec.x;
 	cube->hero->y = cube->src->vec.y;
+	printf("x = %d, y = %d\n", cube->hero->x, cube->hero->y);
+	while (cube->src->map[y])
+		printf("%s\n", cube->src->map[y++]);
 	cube->src->map[cube->hero->y][cube->hero->x] = '0';
 	// exit(0);
 

@@ -34,7 +34,7 @@ char **create_array2(t_elements *elem)
 		array_2d[i] = malloc(elem->width + 1);
 		if (array_2d[i] == NULL)
 			msg_malloc_fail();
-		array_2d[i][elem->height] = '\0';
+		array_2d[i][elem->width] = '\0';
 		i++;
 	}
 	array_2d[i] = NULL;
@@ -68,3 +68,8 @@ void fill_map(char *map, char **map_arr, int w, int h)
 		map++;
 	}
 }
+
+// char **cp_array2(char **array2, t_elements *)
+// {
+
+// }
