@@ -1,4 +1,5 @@
-#include "parse.h"
+#include "../include/parse.h"
+// #include "parse.h"
 
 void	init_map(t_cube *cube)
 {

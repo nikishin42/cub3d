@@ -7,8 +7,8 @@
 #include <sys/errno.h>
 #include <fcntl.h>
 #include <string.h>
-#include "libft/libft.h"
-#include "minilibx_opengl/mlx.h"
+#include "../libft/libft.h"
+#include "../minilibx_opengl/mlx.h"
 
 #define BUFFER_SIZE 1000
 #define HEIGHT 480

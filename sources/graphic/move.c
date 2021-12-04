@@ -1,4 +1,5 @@
-#include "parse.h"
+// #include "parse.h"
+#include "../../include/parse.h"
 
 void	rot_left(t_cube *cube)
 {
