@@ -3,7 +3,7 @@ SO ./texs/south.xpm
 WE ./texs/west.xpm
 EA ./texs/east.xpm
 
-F 50,10,15
+F 00,10,15
 C 100,90,200
 
         1111111111111111111111111

@@ -73,6 +73,18 @@ void	init_cube(t_cube *cube)
 	cube->key->esc = 0;
 }
 
+void	init_texture(t_cube *cube, t_texture *tex, char *path)
+{
+	tex->img = mlx_xpm_file_to_image(cube->mlx, path, &tex->size.x,
+			&tex->size.y);
+	if (!tex->img)
+	{
+		free(cube->texs);
+		// terminate("Error: Image doesn't exist");
+	}
+	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->size_line, &tex->endian);
+}
+
 void	init_cube_2(t_cube *cube, t_elements *elem)
 {
 	cube->src = elem;
@@ -84,6 +96,10 @@ void	init_cube_2(t_cube *cube, t_elements *elem)
 	while (cube->src->map[y])
 		printf("%s\n", cube->src->map[y++]);
 	cube->src->map[cube->hero->y][cube->hero->x] = '0';
+	init_texture(cube, &cube->texs[0], cube->src->EA);
+	init_texture(cube, &cube->texs[1], cube->src->WE);
+	init_texture(cube, &cube->texs[2], cube->src->NO);
+	init_texture(cube, &cube->texs[3], cube->src->SO);
 	// exit(0);
 
 }

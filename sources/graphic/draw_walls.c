@@ -196,9 +196,9 @@ void	draw_walls(t_cube *cube)
 		step_sidedist_init(cube, &ray);
 		dda(cube, &ray);
 		line_height(cube, &ray);
-		// wall_side(cube, &ray);
-		// texturing(cube, &ray, x);
-		draw_stripe(cube, x, &ray);
+		wall_side(cube, &ray);
+		texturing(cube, &ray, x);
+		// draw_stripe(cube, x, &ray);
 		x++;
 	}
 }
