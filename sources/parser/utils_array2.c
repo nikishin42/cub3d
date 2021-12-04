@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_array2.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lelle <lelle@student.21-school.ru>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/04 17:07:09 by lelle             #+#    #+#             */
+/*   Updated: 2021/12/04 17:07:11 by lelle            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/parse.h"
 
-int array2_len(char **array2)
+int	array2_len(char **array2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (array2[i])
@@ -10,9 +22,9 @@ int array2_len(char **array2)
 	return (i);
 }
 
-void array2_free(char **array2)
+void	array2_free(char **array2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (array2[i] != NULL)
@@ -20,10 +32,10 @@ void array2_free(char **array2)
 	array2[0] = NULL;
 }
 
-char **create_array2(t_elements *elem)
+char	**create_array2(t_elements *elem)
 {
-	char **array_2d;
-	int i;
+	char	**array_2d;
+	int		i;
 
 	i = 0;
 	array_2d = malloc(sizeof(char *) * (elem->height + 1));
@@ -41,10 +53,10 @@ char **create_array2(t_elements *elem)
 	return (array_2d);
 }
 
-void fill_map(char *map, char **map_arr, int w, int h)
+void	fill_map(char *map, char **map_arr, int w, int h)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (++i < h)
@@ -64,12 +76,7 @@ void fill_map(char *map, char **map_arr, int w, int h)
 				map_arr[i][j] = 'X';
 		}
 		if (*map == '\0')
-			break;
+			break ;
 		map++;
 	}
 }
-
-// char **cp_array2(char **array2, t_elements *)
-// {
-
-// }

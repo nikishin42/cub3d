@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_arrays.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lelle <lelle@student.21-school.ru>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/04 17:06:41 by lelle             #+#    #+#             */
+/*   Updated: 2021/12/04 17:06:43 by lelle            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/parse.h"
 
-int is_digitstr(char *str)
+int	is_digitstr(char *str)
 {
 	while (*str != '\0' && ft_isdigit(*str))
 		str++;
@@ -9,19 +21,13 @@ int is_digitstr(char *str)
 	return (0);
 }
 
-int sym_found(char *str, char *search)
+int	sym_found(char *str, char *search)
 {
-	// printf("here 14\n");
-	// printf("%s - str, %s - serch\n", str, search);
 	while (*str)
 	{
 		if (ft_strchr(search, *str) == NULL)
-		{
-			// printf("here:%c-\n");
 			return (0);
-		}
 		str++;
 	}
-	// printf("%s - found\n", str);
 	return (1);
 }
