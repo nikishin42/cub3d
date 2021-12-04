@@ -1,4 +1,4 @@
-#include "../parse.h"
+#include "../../include/parse.h"
 
 static char	*ft_movetemp(char *s1, char c)
 {

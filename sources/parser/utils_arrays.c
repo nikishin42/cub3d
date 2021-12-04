@@ -1,4 +1,4 @@
-#include "../parse.h"
+#include "../../include/parse.h"
 
 int is_digitstr(char *str)
 {
