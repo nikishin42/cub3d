@@ -11,6 +11,7 @@
 #include "../minilibx_opengl/mlx.h"
 
 #define BUFFER_SIZE 1000
+#define TEX 64
 #define HEIGHT 480
 #define WIDTH 640
 #define MS 0.05 // move speed
@@ -157,5 +158,6 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void	draw_walls(t_cube *cube);
 void	move(t_cube *cube);
 int		draw_all(t_cube *cube);
+unsigned long color_hex(int r, int g, int b);
 
 #endif

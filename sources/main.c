@@ -37,14 +37,14 @@ void	init_map(t_cube *cube)
 
 void	init_cube(t_cube *cube)
 {
-	t_elements	*src;
+	// t_elements	*src;
 	t_player	*hero;
 	t_coords	*coords;
 	t_texture	*texs;
 	t_keys		*keys;
 	t_img		*img;
 
-	src = malloc(sizeof(t_elements));
+	// src = malloc(sizeof(t_elements));
 	hero = malloc(sizeof(t_player));
 	coords = malloc(sizeof(t_coords));
 	texs = malloc(sizeof(t_texture) * 4);
@@ -52,7 +52,7 @@ void	init_cube(t_cube *cube)
 	img = malloc(sizeof(t_img));
 	cube->mlx = mlx_init();
 	cube->win = mlx_new_window(cube->mlx, WIDTH, HEIGHT, "cube3d");
-	cube->src = src;
+	// cube->src = src;
 	cube->hero = hero;
 	cube->coords = coords;
 	cube->texs = texs;
@@ -60,10 +60,10 @@ void	init_cube(t_cube *cube)
 	cube->img = img;
 	// img->img = mlx_new_image(cube->mlx, WIDTH, HEIGHT);
 	// img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_length, &img->endian);
-	init_map(cube);
-	cube->hero->direction = 'E';
-	cube->hero->x = 2;
-	cube->hero->y = 2;
+	// init_map(cube);
+	// cube->hero->direction = 'E';
+	// cube->hero->x = 2;
+	// cube->hero->y = 2;
 	cube->key->w = 0;
 	cube->key->a = 0;
 	cube->key->s = 0;
@@ -73,13 +73,32 @@ void	init_cube(t_cube *cube)
 	cube->key->esc = 0;
 }
 
+void	init_cube_2(t_cube *cube, t_elements *elem)
+{
+	cube->src = elem;
+	int y = 0;
+	while (cube->src->map[y])
+		printf("%s\n", cube->src->map[y++]);
+	cube->hero->direction = cube->src->dir;
+	cube->hero->x = cube->src->vec.x;
+	cube->hero->y = cube->src->vec.y;
+	cube->src->map[cube->hero->y][cube->hero->x] = '0';
+	// exit(0);
+
+}
+
 int	main(int ac, char **av)
 {
-	// t_elements *elem;
+	t_elements *elem;
 	t_cube cube;
 
-	// elem = parse(ac, av);
+
+	// исправить заполнение цвета пола и потолка
+	// по направлению игрока выставлять дир
+	// заинитить текстуры
+	elem = parse(ac, av);
 	init_cube(&cube);
+	init_cube_2(&cube, elem);
 	graphic(&cube);
 	return (0);
 }
