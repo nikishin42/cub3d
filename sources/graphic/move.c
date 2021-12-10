@@ -1,4 +1,3 @@
-// #include "parse.h"
 #include "../../include/parse.h"
 
 void	rot_left(t_cube *cube)
@@ -29,13 +28,10 @@ void	rot_right(t_cube *cube)
 
 void	move_forward(t_cube *cube)
 {
-	// printf("in updown\n");
 	if (cube->src->map[(int)(cube->coords->posy)][(int)(cube->coords->posx + cube->coords->dirx)] == '0')
 		cube->coords->posx += MS * cube->coords->dirx;
 	if (cube->src->map[(int)(cube->coords->posy + cube->coords->diry)][(int)cube->coords->posx] == '0')
 		cube->coords->posy += MS * cube->coords->diry;
-		// printf("posx = %f posy = %f\n", cube->coords->posx, cube->coords->posy);
-	// draw_all(cube);
 }
 
 void	move_backward(t_cube *cube)
@@ -64,7 +60,6 @@ void	move_right(t_cube *cube)
 
 void	move(t_cube *cube)
 {
-	// printf("in move\n");
 	if (cube->key->w)
 		move_forward(cube);
 	if (cube->key->s)

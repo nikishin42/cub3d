@@ -1,6 +1,4 @@
-// #include "graphic.h"
 #include "../../include/parse.h"
-
 
 void	set_plane(t_cube *cube)
 {
@@ -28,22 +26,22 @@ void	set_plane(t_cube *cube)
 
 void	set_direction(t_cube *cube)
 {
-	if (cube->hero->direction == 'E')
+	if (cube->hero->direction == 'W')
 	{
 		cube->coords->dirx = 1;
 		cube->coords->diry = 0;
 	}
-	if (cube->hero->direction == 'W')
+	if (cube->hero->direction == 'E')
 	{
 		cube->coords->dirx = -1;
 		cube->coords->diry = 0;
 	}
-	if (cube->hero->direction == 'S')
+	if (cube->hero->direction == 'N')
 	{
 		cube->coords->dirx = 0;
 		cube->coords->diry = -1;
 	}
-	if (cube->hero->direction == 'N')
+	if (cube->hero->direction == 'S')
 	{
 		cube->coords->dirx = 0;
 		cube->coords->diry = 1;
@@ -71,10 +69,8 @@ void	draw_terra_sky(t_cube *cube)
 		{
 			if (y < (HEIGHT / 2))
 				color = color_hex(cube->src->C[0], cube->src->C[1], cube->src->C[2]);
-				// color = 0x00b5b9ff + (y * x);
 			else
 				color = color_hex(cube->src->F[0], cube->src->F[1], cube->src->F[2]);
-				// color = 0x00ffffd1 - (y * y % 128);
 			my_mlx_pixel_put(cube->img, x, y, color);
 			x++;
 		}
@@ -97,16 +93,13 @@ int	draw_all(t_cube *cube)
 	draw_walls(cube);
 	mlx_put_image_to_window(cube->mlx, cube->win, cube->img->img, 0, 0);
 	mlx_destroy_image(cube->mlx, cube->img->img);
-	// mlx_do_sync(cube->mlx);
 	return 1;
 }
 
 int key_press(int key, t_cube *cube)
 {
-	// printf("%d\n", key);
 	if (key == 13)
 		cube->key->w = 1;
-		// up_down(cube, 0.05);
 	if (key == 1)
 		cube->key->s = 1;
 	if (key == 0)
@@ -144,13 +137,8 @@ void	graphic(t_cube *cube)
 {
 	cube->coords->posx = (double)cube->hero->x + 0.5;
 	cube->coords->posy = (double)cube->hero->y + 0.5;
-	// printf("x = %f, y = %f\n", cube->coords->posx, cube->coords->posy);
 	set_plane(cube);
-	// printf("px = %f, py = %f\n", cube->coords->planex, cube->coords->planey);
 	set_direction(cube);
-	// printf("dx = %f, dy = %f\n", cube->coords->dirx, cube->coords->diry);
-	// cube->src->map[cube->hero->y][cube->hero->x] = '0';
-	// draw_all(cube);
 	mlx_hook(cube->win, 17, 0, closer, cube);
 	mlx_hook(cube->win, 2, 0, key_press, cube);
 	mlx_hook(cube->win, 3, 0, key_release, cube);

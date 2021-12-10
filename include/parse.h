@@ -12,10 +12,10 @@
 
 #define BUFFER_SIZE 1000
 #define TEX 64
-#define HEIGHT 480
-#define WIDTH 640
-#define MS 0.02 // move speed
-#define RS 0.03 // 	rotation speed
+#define HEIGHT 720
+#define WIDTH 1080
+#define MS 0.04 // move speed
+#define RS 0.05 // 	rotation speed
 
 typedef struct s_keys
 {
