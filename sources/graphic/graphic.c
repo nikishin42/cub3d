@@ -1,6 +1,5 @@
 #include "../../include/parse.h"
 
-
 void	set_plane(t_cube *cube)
 {
 	if (cube->hero->direction == 'E')
@@ -27,22 +26,22 @@ void	set_plane(t_cube *cube)
 
 void	set_direction(t_cube *cube)
 {
-	if (cube->hero->direction == 'E')
+	if (cube->hero->direction == 'W')
 	{
 		cube->coords->dirx = 1;
 		cube->coords->diry = 0;
 	}
-	if (cube->hero->direction == 'W')
+	if (cube->hero->direction == 'E')
 	{
 		cube->coords->dirx = -1;
 		cube->coords->diry = 0;
 	}
-	if (cube->hero->direction == 'S')
+	if (cube->hero->direction == 'N')
 	{
 		cube->coords->dirx = 0;
 		cube->coords->diry = -1;
 	}
-	if (cube->hero->direction == 'N')
+	if (cube->hero->direction == 'S')
 	{
 		cube->coords->dirx = 0;
 		cube->coords->diry = 1;
@@ -132,7 +131,6 @@ int key_release(int key, t_cube *cube)
 		cube->key->right = 0;
 	return (0);
 }
-
 
 void	graphic(t_cube *cube)
 {

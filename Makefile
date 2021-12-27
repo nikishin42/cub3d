@@ -8,15 +8,17 @@ FRAMEWORKS = -lmlx -framework OpenGL -framework AppKit
 
 MLX =	minilibx_opengl/libmlx.a
 LIB = 	libft/libft.a
-FLAGS =	-Wall -Wextra -Werror
+# FLAGS =	-Wall -Wextra -Werror
 INCLUDES = -I./minilibx_opengl -I./parser -I./libft -I./graphic -I./include
 
 all: $(NAME)
 
 # $(NAME): lib mlx
 # 	gcc -o $(NAME) $(SRC) $(LIB) $(MLX) $(FRAMEWORKS)
+#	gcc -o $(NAME) $(INCLUDES) $(SRC) $(LIB) $(MLX) $(FRAMEWORKS)
 $(NAME): $(SRC)
-	@ gcc -o $(NAME) $(INCLUDES) $(SRC) $(LIB) $(MLX) $(FRAMEWORKS)
+	gcc -o cub3d -I./minilibx_opengl -I./parser -I./libft -I./graphic -I./include -L./minilibx_opengl sources/graphic/*.c sources/main.c \
+	sources/parser/*.c libft/libft.a minilibx_opengl/libmlx.a -framework OpenGL -framework AppKit
 	@ echo $(NAME) compilation is OK!
 	@ ./$(NAME) map.cub
 
