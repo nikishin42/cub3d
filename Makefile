@@ -1,4 +1,4 @@
-# SRC = graphic/*.c parser/*.c main.c 
+# SRC = graphic/*.c parser/*.c main.c
 
 SRC = sources/graphic/*.c sources/main.c sources/parser/*.c
 
@@ -38,7 +38,7 @@ clean:
 fclean: clean
 	@ rm -rf $(NAME)
 	@ make -C libft/ clean
-	
+
 re: fclean all
 
 

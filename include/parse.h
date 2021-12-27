@@ -1,5 +1,5 @@
 #ifndef PARSE_H
-#define PARSE_H
+# define PARSE_H
 
 #include <math.h>
 #include <stdio.h>
@@ -10,12 +10,12 @@
 #include "../libft/libft.h"
 #include "../minilibx_opengl/mlx.h"
 
-#define BUFFER_SIZE 1000
-#define TEX 64
-#define HEIGHT 480
-#define WIDTH 640
-#define MS 0.02 // move speed
-#define RS 0.03 // 	rotation speed
+# define BUFFER_SIZE 1000
+# define TEX 64
+# define HEIGHT 480
+# define WIDTH 640
+# define MS 0.02
+# define RS 0.03
 
 typedef struct s_keys
 {
@@ -73,13 +73,13 @@ typedef struct s_elements
 	char *SO;
 	char *WE;
 	char *EA;
-	int F[3];	  // цвет пола
-	int C[3];	  // цвет потолка
-	char dir;	  // напрвление игрока, W запад, E восток,  N север, S юг
-	char **map;	  // сама карта
-	t_vector vec; // координаты игрока
-	int width;	  //ширина карты
-	int height;	  // высота карты
+	int F[3];
+	int C[3];
+	char dir;
+	char **map;
+	t_vector vec;
+	int width;
+	int height;
 } t_elements;
 
 typedef struct	s_img {
@@ -159,5 +159,16 @@ void	draw_walls(t_cube *cube);
 void	move(t_cube *cube);
 int		draw_all(t_cube *cube);
 unsigned long	color_hex(int r, int g, int b);
+void	rot_right(t_cube *cube);
+void	rot_left(t_cube *cube);
+int	closer(t_cube *cube);
+void	draw_stripe(t_cube *cube, int x, t_ray *ray);
+void	line_height(t_cube *cube, t_ray *ray);
+void	dda(t_cube *cube, t_ray *ray);
+void	step_sidedist_init(t_cube *cube, t_ray *ray);
+void	ray_init(t_cube *cube, int x, t_ray *ray);
+void	texturing(t_cube *cube, t_ray *ray, int x);
+void	apply_pixel(t_img *img, int x, int y, int color);
+unsigned long color_hex(int r, int g, int b);
 
 #endif
