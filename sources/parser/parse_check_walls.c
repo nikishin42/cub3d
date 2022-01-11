@@ -28,7 +28,7 @@ int	check_recurs(char **map, int i, int j, t_elements *elem)
 		msg_walls_err(i, j);
 	if (j > 0 && j < elem->width && map[i][j - 1] == '0')
 		check_recurs(map, i, j - 1, elem);
-	else if (j > 0 && j < elem->width && map[i][j - 1] == '0')
+	else if (j > 0 && j < elem->width && map[i][j - 1] == 'X')
 		msg_walls_err(i, j);
 	if (j > 0 && j < elem->width - 1 && map[i][j + 1] == '0')
 		check_recurs(map, i, j + 1, elem);

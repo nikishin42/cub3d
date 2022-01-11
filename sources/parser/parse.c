@@ -30,16 +30,16 @@ int	check_fd(int *fd, char *file_name)
 
 void	init_empty_elem(t_elements *elem)
 {
-	elem->NO = NULL;
-	elem->SO = NULL;
-	elem->WE = NULL;
-	elem->EA = NULL;
-	elem->F[0] = -1;
-	elem->F[1] = -1;
-	elem->F[2] = -1;
-	elem->C[0] = -1;
-	elem->C[1] = -1;
-	elem->C[2] = -1;
+	elem->no = NULL;
+	elem->so = NULL;
+	elem->we = NULL;
+	elem->ea = NULL;
+	elem->fl[0] = -1;
+	elem->fl[1] = -1;
+	elem->fl[2] = -1;
+	elem->cl[0] = -1;
+	elem->cl[1] = -1;
+	elem->cl[2] = -1;
 	elem->width = 0;
 	elem->height = 0;
 	elem->dir = '0';
@@ -83,6 +83,8 @@ t_elements	*parse(int argc, char **argv)
 		msg_err("wrong number of arguments\n");
 	check_fd(&fd, argv[1]);
 	elem = malloc(sizeof(t_elements));
+	if (!elem)
+		msg_malloc_fail();
 	init_empty_elem(elem);
 	map_str = NULL;
 	map_str = read_map(fd, elem, &map_str);

@@ -68,17 +68,17 @@ int	record_elem(char *line, t_elements *elem, int *num)
 	if (split_elem == NULL)
 		msg_malloc_fail();
 	if (ft_strncmp(split_elem[0], "NO", 3) == 0)
-		check_texture(split_elem, &elem->NO);
+		check_texture(split_elem, &elem->no);
 	else if (ft_strncmp(split_elem[0], "SO", 3) == 0)
-		check_texture(split_elem, &elem->SO);
+		check_texture(split_elem, &elem->so);
 	else if (ft_strncmp(split_elem[0], "WE", 3) == 0)
-		check_texture(split_elem, &elem->WE);
+		check_texture(split_elem, &elem->we);
 	else if (ft_strncmp(split_elem[0], "EA", 3) == 0)
-		check_texture(split_elem, &elem->EA);
+		check_texture(split_elem, &elem->ea);
 	else if (ft_strncmp(split_elem[0], "F", 2) == 0)
-		check_colors(split_elem, elem->F, "F");
+		check_colors(split_elem, elem->fl, "F");
 	else if (ft_strncmp(split_elem[0], "C", 2) == 0)
-		check_colors(split_elem, elem->C, "C");
+		check_colors(split_elem, elem->cl, "C");
 	else
 		msg_err2(line, ": invalid line\n");
 	array2_free(split_elem);

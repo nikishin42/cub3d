@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_walls.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cstarmie <cstarmie@student.21-school.ru>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/05 22:25:46 by cstarmie          #+#    #+#             */
+/*   Updated: 2022/01/05 22:25:48 by cstarmie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/parse.h"
 
-unsigned long color_hex(int r, int g, int b)
+unsigned long	color_hex(int r, int g, int b)
 {
-	return ((r<<16) | (g<<8) | b);
+	return ((r << 16) | (g << 8) | b);
 }
 
 void	wall_side(t_cube *cube, t_ray *ray)
