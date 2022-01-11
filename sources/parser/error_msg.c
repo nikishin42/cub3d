@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_msg.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lelle <lelle@student.21-school.ru>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/04 17:00:29 by lelle             #+#    #+#             */
+/*   Updated: 2021/12/04 17:00:32 by lelle            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/parse.h"
 
-int msg_stderror(char *name)
+int	msg_stderror(char *name)
 {
 	ft_putstr_fd("Error\n\"", 2);
 	ft_putstr_fd(name, 2);
@@ -10,14 +22,7 @@ int msg_stderror(char *name)
 	exit(1);
 }
 
-int msg_malloc_fail(void)
-{
-	ft_putstr_fd("Error\n", 2);
-	ft_putstr_fd("malloc fail\n", 2);
-	exit(1);
-}
-
-int msg_err2(char *name, char *text)
+int	msg_err2(char *name, char *text)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(name, 2);
@@ -25,7 +30,7 @@ int msg_err2(char *name, char *text)
 	exit(1);
 }
 
-int msg_map_last(void)
+int	msg_map_last(void)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd("Map should be last (after NO, \
@@ -33,14 +38,14 @@ int msg_map_last(void)
 	exit(1);
 }
 
-int msg_err(char *str)
+int	msg_err(char *str)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(str, 2);
 	exit(1);
 }
 
-int msg_walls_err(int i, int j)
+int	msg_walls_err(int i, int j)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd("Walls not closed\nLine ", 2);

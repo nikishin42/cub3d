@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dda.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cstarmie <cstarmie@student.21-school.ru>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/05 22:25:36 by cstarmie          #+#    #+#             */
+/*   Updated: 2022/01/05 22:25:38 by cstarmie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/parse.h"
 
 void	ray_init(t_cube *cube, int x, t_ray *ray)
@@ -20,17 +32,20 @@ void	step_sidedist_init(t_cube *cube, t_ray *ray)
 	}
 	else
 	{
-		ray->sidedistx = (ray->mapx - cube->coords->posx + 1.0) * ray->deltadistx;
+		ray->sidedistx = (ray->mapx - cube->coords->posx + 1.0) \
+		* ray->deltadistx;
 		ray->stepx = 1;
 	}
 	if (ray->raydiry < 0)
 	{
-		ray->sidedisty = (cube->coords->posy - ray->mapy) * ray->deltadisty;
+		ray->sidedisty = (cube->coords->posy - ray->mapy) \
+		* ray->deltadisty;
 		ray->stepy = -1;
 	}
 	else
 	{
-		ray->sidedisty = (ray->mapy - cube->coords->posy + 1.0) * ray->deltadisty;
+		ray->sidedisty = (ray->mapy - cube->coords->posy + 1.0) \
+		* ray->deltadisty;
 		ray->stepy = 1;
 	}
 }
@@ -54,7 +69,6 @@ void	dda(t_cube *cube, t_ray *ray)
 		}
 		if (cube->src->map[ray->mapy][ray->mapx] != '0')
 			ray->hit = 1;
-
 	}
 	if (ray->side == 0)
 		ray->perpwalldist = (ray->sidedistx - ray->deltadistx);
@@ -75,7 +89,7 @@ void	line_height(t_cube *cube, t_ray *ray)
 
 void	draw_stripe(t_cube *cube, int x, t_ray *ray)
 {
-	int y;
+	int	y;
 
 	y = ray->drawstart;
 	while (y < ray->drawend)
@@ -83,5 +97,4 @@ void	draw_stripe(t_cube *cube, int x, t_ray *ray)
 		my_mlx_pixel_put(cube->img, x, y, 0x00232323);
 		y++;
 	}
-
 }

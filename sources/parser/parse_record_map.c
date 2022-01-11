@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_record_map.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lelle <lelle@student.21-school.ru>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/04 17:06:57 by lelle             #+#    #+#             */
+/*   Updated: 2021/12/04 17:06:59 by lelle            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/parse.h"
 
-
-int record_map(int num, int empty_line, char *line, char **map)
+int	record_map(int num, int empty_line, char *line, char **map)
 {
-	char *old_map;
+	char	*old_map;
 
 	if (num < 6)
 		msg_map_last();
@@ -25,13 +36,12 @@ int record_map(int num, int empty_line, char *line, char **map)
 	return (1);
 }
 
-
-char *read_map(int fd, t_elements *elem, char **map)
+char	*read_map(int fd, t_elements *elem, char **map)
 {
-	char *line;
-	int num;
-	int gnl;
-	int empty_line;
+	char	*line;
+	int		num;
+	int		gnl;
+	int		empty_line;
 
 	empty_line = 0;
 	num = 0;
@@ -41,13 +51,13 @@ char *read_map(int fd, t_elements *elem, char **map)
 	{
 		gnl = get_next_line(fd, &line);
 		if (!sym_found(line, "01WENS ") || !ft_strlen(line) || \
-		sym_found(line, " ")) //check tab
+		sym_found(line, " "))
 		{
 			record_elem(line, elem, &num);
 			if (*map != NULL)
 				empty_line += 1;
 		}
-		else if (sym_found(line, "01WENS "))			
+		else if (sym_found(line, "01WENS "))
 			record_map(num, empty_line, line, map);
 		free(line);
 	}

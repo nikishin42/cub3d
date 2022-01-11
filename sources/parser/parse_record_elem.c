@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_record_elem.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lelle <lelle@student.21-school.ru>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/04 17:06:16 by lelle             #+#    #+#             */
+/*   Updated: 2021/12/04 17:06:18 by lelle            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/parse.h"
 
-void check_texture(char **elem_line, char **elem_name)
+void	check_texture(char **elem_line, char **elem_name)
 {
-	int fd;
-	char buf;
-	int read_res;
+	int		fd;
+	char	buf;
+	int		read_res;
 
 	if (*elem_name != NULL)
 		msg_err2(elem_line[0], ": dublicates found\n");
@@ -17,11 +29,11 @@ void check_texture(char **elem_line, char **elem_name)
 	*elem_name = ft_strdup(elem_line[1]);
 }
 
-int check_colors(char **elem_line, int *elem_values, char *elem_name)
+int	check_colors(char **elem_line, int *elem_values, char *elem_name)
 {
-	char **colors;
-	int rgb;
-	int i;
+	char	**colors;
+	int		rgb;
+	int		i;
 
 	i = 0;
 	if (array2_len(elem_line) != 2)
@@ -46,9 +58,9 @@ int check_colors(char **elem_line, int *elem_values, char *elem_name)
 	return (0);
 }
 
-int record_elem(char *line, t_elements *elem, int *num)
+int	record_elem(char *line, t_elements *elem, int *num)
 {
-	char **split_elem;
+	char	**split_elem;
 
 	if (ft_strlen(line) == 0 || sym_found(line, " \0"))
 		return (0);
@@ -56,17 +68,17 @@ int record_elem(char *line, t_elements *elem, int *num)
 	if (split_elem == NULL)
 		msg_malloc_fail();
 	if (ft_strncmp(split_elem[0], "NO", 3) == 0)
-		check_texture(split_elem, &elem->NO);
+		check_texture(split_elem, &elem->no);
 	else if (ft_strncmp(split_elem[0], "SO", 3) == 0)
-		check_texture(split_elem, &elem->SO);
+		check_texture(split_elem, &elem->so);
 	else if (ft_strncmp(split_elem[0], "WE", 3) == 0)
-		check_texture(split_elem, &elem->WE);
+		check_texture(split_elem, &elem->we);
 	else if (ft_strncmp(split_elem[0], "EA", 3) == 0)
-		check_texture(split_elem, &elem->EA);
+		check_texture(split_elem, &elem->ea);
 	else if (ft_strncmp(split_elem[0], "F", 2) == 0)
-		check_colors(split_elem, elem->F, "F");
+		check_colors(split_elem, elem->fl, "F");
 	else if (ft_strncmp(split_elem[0], "C", 2) == 0)
-		check_colors(split_elem, elem->C, "C");
+		check_colors(split_elem, elem->cl, "C");
 	else
 		msg_err2(line, ": invalid line\n");
 	array2_free(split_elem);

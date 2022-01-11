@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cstarmie <cstarmie@student.21-school.ru>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/05 22:25:15 by cstarmie          #+#    #+#             */
+/*   Updated: 2022/01/05 22:25:18 by cstarmie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/parse.h"
 
 void	init_cube(t_cube *cube)
@@ -35,7 +47,8 @@ void	init_texture(t_cube *cube, t_texture *tex, char *path)
 			&tex->size.y);
 	if (!tex->img)
 		free(cube->texs);
-	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->size_line, &tex->endian);
+	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->size_line, \
+	&tex->endian);
 }
 
 void	init_cube_2(t_cube *cube, t_elements *elem)
@@ -45,16 +58,16 @@ void	init_cube_2(t_cube *cube, t_elements *elem)
 	cube->hero->x = cube->src->vec.x;
 	cube->hero->y = cube->src->vec.y;
 	cube->src->map[cube->hero->y][cube->hero->x] = '0';
-	init_texture(cube, &cube->texs[0], cube->src->EA);
-	init_texture(cube, &cube->texs[1], cube->src->WE);
-	init_texture(cube, &cube->texs[2], cube->src->NO);
-	init_texture(cube, &cube->texs[3], cube->src->SO);
+	init_texture(cube, &cube->texs[0], cube->src->ea);
+	init_texture(cube, &cube->texs[1], cube->src->we);
+	init_texture(cube, &cube->texs[2], cube->src->no);
+	init_texture(cube, &cube->texs[3], cube->src->so);
 }
 
 int	main(int ac, char **av)
 {
-	t_elements *elem;
-	t_cube cube;
+	t_elements	*elem;
+	t_cube		cube;
 
 	elem = parse(ac, av);
 	init_cube(&cube);
