@@ -83,6 +83,8 @@ t_elements	*parse(int argc, char **argv)
 		msg_err("wrong number of arguments\n");
 	check_fd(&fd, argv[1]);
 	elem = malloc(sizeof(t_elements));
+	if (!elem)
+		msg_malloc_fail();
 	init_empty_elem(elem);
 	map_str = NULL;
 	map_str = read_map(fd, elem, &map_str);

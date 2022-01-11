@@ -25,6 +25,8 @@ void	init_cube(t_cube *cube)
 	texs = malloc(sizeof(t_texture) * 4);
 	keys = malloc(sizeof(t_keys));
 	img = malloc(sizeof(t_img));
+	if (!hero || !coords || !texs || !keys || !img)
+		msg_malloc_fail();
 	cube->mlx = mlx_init();
 	cube->win = mlx_new_window(cube->mlx, WIDTH, HEIGHT, "cube3d");
 	cube->hero = hero;
@@ -32,13 +34,6 @@ void	init_cube(t_cube *cube)
 	cube->texs = texs;
 	cube->key = keys;
 	cube->img = img;
-	cube->key->w = 0;
-	cube->key->a = 0;
-	cube->key->s = 0;
-	cube->key->d = 0;
-	cube->key->left = 0;
-	cube->key->right = 0;
-	cube->key->esc = 0;
 }
 
 void	init_texture(t_cube *cube, t_texture *tex, char *path)
@@ -62,6 +57,13 @@ void	init_cube_2(t_cube *cube, t_elements *elem)
 	init_texture(cube, &cube->texs[1], cube->src->we);
 	init_texture(cube, &cube->texs[2], cube->src->no);
 	init_texture(cube, &cube->texs[3], cube->src->so);
+	cube->key->w = 0;
+	cube->key->a = 0;
+	cube->key->s = 0;
+	cube->key->d = 0;
+	cube->key->left = 0;
+	cube->key->right = 0;
+	cube->key->esc = 0;
 }
 
 int	main(int ac, char **av)
