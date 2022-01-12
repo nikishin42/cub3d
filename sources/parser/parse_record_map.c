@@ -28,6 +28,9 @@ int	record_map(int num, int empty_line, char *line, char **map)
 		return (0);
 	}
 	old_map = ft_strjoin(*map, "\n");
+	if (old_map == NULL)
+		msg_malloc_fail();
+	free(*map);
 	*map = ft_strjoin(old_map, line);
 	if (*map == NULL)
 		msg_malloc_fail();

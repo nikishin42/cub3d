@@ -35,4 +35,5 @@ int	check_start_point(char **map, t_elements *elem)
 	}
 	if (elem->vec.x == -1 && elem->vec.y == -1)
 		msg_err("Start point not found\n");
+	return (0);
 }
