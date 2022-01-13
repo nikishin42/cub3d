@@ -8,11 +8,11 @@ SRC =	sources/graphic/dda.c \
 		sources/parser/error_msg.c \
 		sources/parser/error_msg2.c \
 		sources/parser/get_next_line_utils.c \
-		sources/parser/get_next_line_.c \
+		sources/parser/get_next_line.c \
 		sources/parser/parse_check_start_point.c \
 		sources/parser/parse_check_walls.c \
-		sources/parser/record_elem.c \
-		sources/parser/record_map.c \
+		sources/parser/parse_record_elem.c \
+		sources/parser/parse_record_map.c \
 		sources/parser/parse.c \
 		sources/parser/utils_array2.c \
 		sources/parser/utils_arrays.c \
@@ -23,7 +23,7 @@ NAME = cub3d
 FRAMEWORKS = -lmlx -framework OpenGL -framework AppKit
 MLX =	minilibx_opengl/libmlx.a
 LIB =  libft/libft.a
-
+FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 

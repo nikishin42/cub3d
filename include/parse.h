@@ -174,7 +174,7 @@ void			rot_right(t_cube *cube);
 void			rot_left(t_cube *cube);
 int				closer(t_cube *cube);
 void			draw_stripe(t_cube *cube, int x, t_ray *ray);
-void			line_height(t_cube *cube, t_ray *ray);
+void			line_height(t_ray *ray);
 void			dda(t_cube *cube, t_ray *ray);
 void			step_sidedist_init(t_cube *cube, t_ray *ray);
 void			ray_init(t_cube *cube, int x, t_ray *ray);
