@@ -75,7 +75,7 @@ int	key_press(int key, t_cube *cube)
 	if (key == 123)
 		cube->key->right = 1;
 	if (key == 53)
-		closer(cube);
+		closer();
 	return (0);
 }
 
