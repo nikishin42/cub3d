@@ -16,7 +16,6 @@ void	check_texture(char **elem_line, char **elem_name)
 {
 	int		fd;
 	char	buf;
-	int		read_res;
 
 	if (*elem_name != NULL)
 		msg_err2(elem_line[0], ": dublicates found\n");
@@ -32,7 +31,6 @@ void	check_texture(char **elem_line, char **elem_name)
 int	check_colors(char **elem_line, int *elem_values, char *elem_name)
 {
 	char	**colors;
-	int		rgb;
 	int		i;
 
 	i = 0;
