@@ -14,6 +14,7 @@
 
 int	closer(t_cube *cube)
 {
+	(void *)cube;
 	exit(1);
 }
 
