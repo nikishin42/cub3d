@@ -21,6 +21,9 @@ $(NOM):	$(OBJ)
 clean:
 	@ rm -f $(OBJ) *~
 	@ rm -f mlx_app
-	@ echo mlx clean is OK! 
+	@ echo mlx clean is OK!
+
+fclean: clean
+	@ rm -rf $(NOM)
 
 re: clean all

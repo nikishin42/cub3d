@@ -47,7 +47,7 @@ void	draw_walls(t_cube *cube)
 		ray_init(cube, x, &ray);
 		step_sidedist_init(cube, &ray);
 		dda(cube, &ray);
-		line_height(cube, &ray);
+		line_height(&ray);
 		wall_side(cube, &ray);
 		texturing(cube, &ray, x);
 		x++;

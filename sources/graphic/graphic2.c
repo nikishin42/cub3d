@@ -70,12 +70,12 @@ int	key_press(int key, t_cube *cube)
 		cube->key->a = 1;
 	if (key == 2)
 		cube->key->d = 1;
-	if (key == 123)
-		cube->key->left = 1;
 	if (key == 124)
+		cube->key->left = 1;
+	if (key == 123)
 		cube->key->right = 1;
 	if (key == 53)
-		closer(cube);
+		closer();
 	return (0);
 }
 
@@ -89,9 +89,9 @@ int	key_release(int key, t_cube *cube)
 		cube->key->a = 0;
 	if (key == 2)
 		cube->key->d = 0;
-	if (key == 123)
-		cube->key->left = 0;
 	if (key == 124)
+		cube->key->left = 0;
+	if (key == 123)
 		cube->key->right = 0;
 	return (0);
 }

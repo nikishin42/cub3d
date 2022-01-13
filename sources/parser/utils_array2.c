@@ -29,7 +29,7 @@ void	array2_free(char **array2)
 	i = 0;
 	while (array2[i] != NULL)
 		free(array2[i++]);
-	array2[0] = NULL;
+	free(array2);
 }
 
 char	**create_array2(t_elements *elem)

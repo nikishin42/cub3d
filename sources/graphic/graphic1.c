@@ -12,7 +12,7 @@
 
 #include "../../include/parse.h"
 
-int	closer(t_cube *cube)
+int	closer()
 {
 	exit(1);
 }
@@ -70,7 +70,7 @@ void	graphic(t_cube *cube)
 	cube->coords->posy = (double)cube->hero->y + 0.5;
 	set_plane(cube);
 	set_direction(cube);
-	mlx_hook(cube->win, 17, 0, closer, cube);
+	mlx_hook(cube->win, 17, 0, closer, NULL);
 	mlx_hook(cube->win, 2, 0, key_press, cube);
 	mlx_hook(cube->win, 3, 0, key_release, cube);
 	mlx_loop_hook(cube->mlx, draw_all, cube);

@@ -77,7 +77,6 @@ t_elements	*parse(int argc, char **argv)
 	t_elements	*elem;
 	char		*map_str;
 	int			fd;
-	char		**map_arr;
 
 	if (argc != 2)
 		msg_err("wrong number of arguments\n");
@@ -91,12 +90,11 @@ t_elements	*parse(int argc, char **argv)
 	if (map_str == NULL)
 		msg_err("Map not found\n");
 	define_map_size(map_str, elem);
-	map_arr = create_array2(elem);
-	fill_map(map_str, map_arr, elem->width, elem->height);
-	check_start_point(map_arr, elem);
-	check_walls(map_arr, elem);
+	elem->map = create_array2(elem);
+	fill_map(map_str, elem->map, elem->width, elem->height);
+	check_start_point(elem->map, elem);
+	check_walls(elem->map, elem);
 	free(map_str);
-	elem->map = map_arr;
 	close(fd);
 	return (elem);
 }

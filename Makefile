@@ -1,32 +1,37 @@
-# SRC = graphic/*.c parser/*.c main.c
-
-SRC = sources/graphic/*.c sources/main.c sources/parser/*.c
+SRC =	sources/graphic/dda.c \
+		sources/graphic/draw_walls.c \
+		sources/graphic/graphic1.c \
+		sources/graphic/graphic2.c \
+		sources/graphic/move.c \
+		sources/graphic/rotation.c \
+		sources/graphic/texturing.c \
+		sources/parser/error_msg.c \
+		sources/parser/error_msg2.c \
+		sources/parser/get_next_line_utils.c \
+		sources/parser/get_next_line.c \
+		sources/parser/parse_check_start_point.c \
+		sources/parser/parse_check_walls.c \
+		sources/parser/parse_record_elem.c \
+		sources/parser/parse_record_map.c \
+		sources/parser/parse.c \
+		sources/parser/utils_array2.c \
+		sources/parser/utils_arrays.c \
+		sources/main.c
 
 NAME = cub3d
 
 FRAMEWORKS = -lmlx -framework OpenGL -framework AppKit
-
 MLX =	minilibx_opengl/libmlx.a
-LIB = 	libft/libft.a
-# FLAGS =	-Wall -Wextra -Werror
-INCLUDES = -I./minilibx_opengl -I./parser -I./libft -I./graphic -I./include
+LIB =  libft/libft.a
+FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-# $(NAME): lib mlx
-# 	gcc -o $(NAME) $(SRC) $(LIB) $(MLX) $(FRAMEWORKS)
-#	gcc -o $(NAME) $(INCLUDES) $(SRC) $(LIB) $(MLX) $(FRAMEWORKS)
-$(NAME): $(SRC)
-	gcc -o cub3d -I./minilibx_opengl -I./parser -I./libft -I./graphic -I./include -L./minilibx_opengl sources/graphic/*.c sources/main.c \
-	sources/parser/*.c libft/libft.a minilibx_opengl/libmlx.a -framework OpenGL -framework AppKit
-	@ echo $(NAME) compilation is OK!
-	@ ./$(NAME) map.cub
 
-# gcc для Асем
-# $(NAME): $(SRC)
-# 	@ gcc -o $(NAME) $(SRC) $(LIB)
-# 	@ echo $(NAME) compilation is OK!
-# 	@ ./$(NAME)
+$(NAME): $(SRC) lib mlx
+	@ gcc $(FLAGS) -o $(NAME) $(SRC) $(LIB) $(MLX) $(FRAMEWORKS)
+	@ echo $(NAME) compilation is OK!
+
 lib:
 	@ make -C libft/
 
@@ -39,7 +44,8 @@ clean:
 
 fclean: clean
 	@ rm -rf $(NAME)
-	@ make -C libft/ clean
+	@ make -C minilibx_opengl/ fclean
+	@ make -C libft/ fclean
 
 re: fclean all
 

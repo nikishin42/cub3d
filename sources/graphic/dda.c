@@ -76,7 +76,7 @@ void	dda(t_cube *cube, t_ray *ray)
 		ray->perpwalldist = (ray->sidedisty - ray->deltadisty);
 }
 
-void	line_height(t_cube *cube, t_ray *ray)
+void	line_height(t_ray *ray)
 {
 	ray->lineheight = (int)(HEIGHT / ray->perpwalldist);
 	ray->drawstart = -ray->lineheight / 2 + HEIGHT / 2;
