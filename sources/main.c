@@ -66,6 +66,21 @@ void	init_cube_2(t_cube *cube, t_elements *elem)
 	cube->key->esc = 0;
 }
 
+void	free_memory(t_elements *elem, t_cube *cube)
+{
+	array2_free(elem->map);
+	free(elem->ea);
+	free(elem->we);
+	free(elem->no);
+	free(elem->so);
+	free (elem);
+	free(cube->hero);
+	free(cube->coords);
+	free(cube->texs);
+	free(cube->key);
+	free(cube->img);
+}
+
 int	main(int ac, char **av)
 {
 	t_elements	*elem;
@@ -75,5 +90,6 @@ int	main(int ac, char **av)
 	init_cube(&cube);
 	init_cube_2(&cube, elem);
 	graphic(&cube);
+	free_memory(elem, &cube);
 	return (0);
 }
