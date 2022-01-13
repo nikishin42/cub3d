@@ -172,7 +172,7 @@ int				draw_all(t_cube *cube);
 unsigned long	color_hex(int r, int g, int b);
 void			rot_right(t_cube *cube);
 void			rot_left(t_cube *cube);
-int				closer();
+int				closer(void);
 void			draw_stripe(t_cube *cube, int x, t_ray *ray);
 void			line_height(t_ray *ray);
 void			dda(t_cube *cube, t_ray *ray);

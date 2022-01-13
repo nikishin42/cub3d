@@ -12,7 +12,7 @@
 
 #include "../../include/parse.h"
 
-int	closer()
+int	closer(void)
 {
 	exit(1);
 }
